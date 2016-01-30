@@ -15,7 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
-        Parse.setApplicationId("LHIcl9cYFhZGVxHgIEygaBBmmk2mw4c2kLhdWD6t", clientKey: "fZcYWzei4xgBXh3c2p42e9dMjsbiHPWEk1ZklDmX");
+        //Parse.setApplicationId("...", clientKey: "...");
+        
+        Parse.setLogLevel(PFLogLevel.Info);
+        
+        let config = ParseClientConfiguration(block: {
+            (ParseMutableClientConfiguration) -> Void in
+            
+            ParseMutableClientConfiguration.applicationId = "...";
+            ParseMutableClientConfiguration.clientKey = "...";
+            ParseMutableClientConfiguration.server = "...";
+        });
+        
+        Parse.initializeWithConfiguration(config);
         
         let tableVC:CatsTableViewController = CatsTableViewController(className: "Cat");
         tableVC.title = "Paws";
